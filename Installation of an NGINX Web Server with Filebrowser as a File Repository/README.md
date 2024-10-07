@@ -1,8 +1,8 @@
-# Installation of an NGINX Web Server with Filebrowser as a File Repository
+# Installation of an NGINX Web Server with Filebrowser as a File Repository on Proxmox
 
 ## Getting Started
 
-To begin, you need a properly set up Proxmox system. In this guide, I am using a basic test lab setup. Proxmox has been freshly installed and cleaned up using the [Proxmox VE Post Install](https://proxmoxve-scripts.com/scripts?id=Proxmox%20VE%20Post%20Install) script from Proxmox Helper Scripts.
+To begin, you need a properly set up Proxmox system. In this guide, I am using a basic setup. Proxmox has been freshly installed and cleaned up using the [Proxmox VE Post Install](https://proxmoxve-scripts.com/scripts?id=Proxmox%20VE%20Post%20Install) script from Proxmox Helper Scripts.
 
 Next, create a new LXC container in the Proxmox web interface. Once the container is created, we can begin installing the NGINX web server.
 
