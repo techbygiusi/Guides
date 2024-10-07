@@ -6,10 +6,10 @@ To begin, you need a properly set up Proxmox system. In this guide, I am using a
 
 Next, create a new LXC container in the Proxmox web interface. Once the container is created, we can begin installing the NGINX web server.
 
-Ressources:
+Resources:
 
--[NGINX](https://nginx.org/en/)
--[Filebrowser](https://filebrowser.org/)
+- [NGINX](https://nginx.org/en/)
+- [Filebrowser](https://filebrowser.org/)
 
 ## Setup
 
