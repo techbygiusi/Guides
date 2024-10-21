@@ -8,9 +8,6 @@ Self-hosting can be a rewarding experience, giving you full control over your ap
 
 ## 🛠️ Featured Guides
 
-- **Getting Started with Docker**: Learn the basics of Docker and how to set up your first container.
-- **Self-Hosting Nextcloud**: Step-by-step instructions to set up your personal cloud storage solution.
-- **Deploying a Personal Wiki**: Create your own wiki using popular self-hosted solutions.
 - **Host a Webbrowser with Filebrowser integration**: Create and launch your own website with a simple file uplaod.
 
 ## 📝 Contribution Guidelines
