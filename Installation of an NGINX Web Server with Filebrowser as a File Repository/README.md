@@ -114,4 +114,6 @@ Filebrowser will now be accessible at `http://[your-ip-address]:8080`.
 
 The default username and password are `admin` / `admin`. These credentials can be changed through the Filebrowser web interface.
 
+---
+
 **Recommendation:** It is highly recommended to secure both the website and Filebrowser with a TLS certificate to protect your data from being intercepted.
