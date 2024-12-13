@@ -185,7 +185,7 @@ After pasting the code, save your `settings.json`. Your new theme will take effe
 
 By following these steps, you've created a custom theme for Visual Studio Code. Feel free to modify the colors to suit your preferences, and enjoy a personalized coding experience!
 
-## Images with my example ''settings.json''
+## Images with my example `settings.json`
 ![Screenshot 2024-12-13 200348](https://github.com/user-attachments/assets/0c3516ed-c91f-4553-b861-b81e7088c9c0)
 
 ![image](https://github.com/user-attachments/assets/d500d884-779a-4523-a3ca-9a60a06a3bd4)
