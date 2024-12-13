@@ -175,6 +175,7 @@ Copy the following settings and paste them into your `settings.json` file:
     },
     "workbench.editor.empty.hint": "hidden"
 }
+---
 
 ## Step 3: Save Your Settings
 
