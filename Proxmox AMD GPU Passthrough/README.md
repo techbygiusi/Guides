@@ -6,7 +6,7 @@ This guide is mainly based on the [Ultimate Beginner's Guide to GPU Passthrough 
 
 ### Disclaimer
 
-In no way, shape, or form does this guide claim to work for all instances of Proxmox/GPU configurations. Use at your own risk. I am not responsible if you blow up your server, your home, or yourself. Surgeon General Warning: do not operate this guide while under the influence of intoxicating substances. Do not let your cat operate this guide. You have been warned.
+In no way, shape, or form does this guide claim to work for all instances of Proxmox/GPU configurations. Use at your own risk. I am not responsible if you blow up your server, your home, or yourself.
 
 ## Let's Get Started (Pre-configuration Checklist)
 
@@ -21,6 +21,20 @@ The main system is a [Minisforum MS-01](https://store.minisforum.de/products/ms-
 - **CPU**: Intel Core [i5 12600H](https://www.intel.de/content/www/de/de/products/sku/96156/intel-core-i512600h-processor-18m-cache-up-to-4-50-ghz/specifications.html)
 - **Memory**: [32GB DDR5](https://www.amazon.de/dp/B09RVNMGFH?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
 - **GPU**: 1x AMD Radeon [RX 6400](https://www.amazon.de/XFX-Speedster-SWFT105-Grafikkarte-RX-64XL4SFG2/dp/B09Y7358KJ/?_encoding=UTF8&pd_rd_w=8N6Zj&content-id=amzn1.sym.16038c01-cfea-4f09-a119-c9f8c051c46c%3Aamzn1.symc.fc11ad14-99c1-406b-aa77-051d0ba1aade&pf_rd_p=16038c01-cfea-4f09-a119-c9f8c051c46c&pf_rd_r=BNCCBXX7QJFESM0CX5VY&pd_rd_wg=VM7m9&pd_rd_r=82033626-c11e-4552-8955-92dd5c3dd5e5&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d&th=1)
+
+## Strange Behavior with the MS-01
+
+I've noticed some strange behavior with my MS-01 when inserting GPUs. If you're working with the same model, make sure to enable both 1Gb ports before inserting the GPU. On my machine, this causes one of the adapters to change its name, and a new one is created. 
+
+If you're connected to only one adapter, it’s possible that the Ethernet adapter may no longer be recognized, causing the machine to lose its internet connection. By enabling both ports, you can switch between them to find one that works. Typically, one of them will always function. In the GUI, you can activate the newly detected network port.
+
+A similar issue occurs with the 10Gb ports, but in this case, both ports are renamed. If you’re using or have configured these ports, make sure to update your configuration accordingly. If anyone has insight into the cause of this behavior, feel free to reach out.
+
+Configuration without GPU:
+![image](https://github.com/user-attachments/assets/19037910-d38a-42aa-bcc2-7bca03062497)
+
+Configuration with GPU:
+![image](https://github.com/user-attachments/assets/b1d598e6-c951-4178-9590-f9bf4269ec61)
 
 ### My Software Configuration:
 
