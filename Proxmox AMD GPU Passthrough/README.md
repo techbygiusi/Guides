@@ -199,7 +199,7 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
    - **Machine**: q35
    - **SCSI Controller**: VirtIO SCSI Single
    - **BIOS**: OVMF (UEFI)
-   - 
+
    ![OS Tab Configuration](https://github.com/user-attachments/assets/dcd6d37d-bf50-4635-b3d5-a3eb0850c7e2)
    
    Everything else can be set as per your preference.
