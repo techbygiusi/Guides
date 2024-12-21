@@ -154,7 +154,7 @@ This guide assumes you already have at the very least, installed Proxmox on your
 
 8. Add the GPU to VFIO by creating a configuration file:
    ```shell
-   echo "options vfio-pci ids=1002:743f,1002:ab28 disable_vga=1" | sudo tee /etc/modprobe.d/vfio.conf
+   echo "options vfio-pci ids=1002:743f,1002:ab28 disable_vga=1" >> /etc/modprobe.d/vfio.conf
    ```
 
 9. Update the initial RAM filesystem:
@@ -166,3 +166,49 @@ This guide assumes you already have at the very least, installed Proxmox on your
     ```shell
     reset
     ```
+
+## Step 6: Configuring the VM (Windows 10)
+
+Now comes the 'fun' part. It took me many, many different configuration attempts to get things just right. Hopefully my pain will be your gain, and help you get things done right, the first time around.
+
+1. Create a VM
+
+   Creating a Virtual Machine is pretty easy and self-explanatory, but if you're having issues, I suggest looking up the official Proxmox Wiki and How-To guides.
+   For this guide, you'll need a Windows ISO for your Virtual Machine. Here's a handy guide on how to download an ISO file directly into Proxmox. You'll want to copy ALL your .ISO files to the proper repository folder under Proxmox (including the VirtIO driver ISO file mentioned below).
+
+   **Example Menu Screens:**
+
+   - General => OS => Hard disk => CPU => Memory => Network => Confirm
+
+   **IMPORTANT**: DO NOT START YOUR VM (yet)
+
+2. (Optional, but RECOMMENDED): Download VirtIO Drivers
+
+   If you follow this guide and are using VirtIO, then you'll need this ISO file of the VirtIO drivers to mount as a CD-ROM in order to install Windows 10 using VirtIO (SCSI).
+   For the CD-ROM, it's fine if you use IDE or SATA. Make sure CD-ROM is selected as the primary boot device under the Options tab when you're done creating the VM. Also, you'll want to make sure you select VirtIO (SCSI, not VirtIO Block) for your Hard disk and Network Adapter.
+
+3. Enable OMVF (UEFI) for the VM
+
+   Under your VM's **Options Tab/Window**, set the following up like so:
+
+   - **Boot Order**: CD-ROM, Disk (scsi0)
+   - **SCSI Controller**: VirtIO SCSI Single
+   - **BIOS**: OMVF (UEFI)
+
+   **Don't Forget**: When you change the BIOS from SeaBIOS (Default) to OMVF (UEFI), Proxmox will say something about adding an EFI disk. So you'll go to your **Hardware Tab/Window** and do that. Add > EFI Disk.
+
+4. Edit the VM Config File
+
+   Going back to the Shell window, we need to edit `/etc/pve/qemu-server/<vmid>.conf`, where `<vmid>` is the VM ID Number you used during the VM creation (General Tab).
+
+   ```shell
+   nano /etc/pve/qemu-server/<vmid>.conf
+   ```
+
+   In the editor, add these command lines (it doesn't matter where you add them, as Proxmox will reorganize them after you save):
+
+   ```shell
+   machine: q35
+   cpu: host,hidden=1,flags=+pcid
+   args: -cpu 'host,+kvm_pv_unhalt,+kvm_pv_eoi,hv_vendor_id=NV43FIX,kvm=off'
+   ```
