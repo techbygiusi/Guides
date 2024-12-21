@@ -174,30 +174,38 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
 1. Create a VM
 
    Creating a Virtual Machine is pretty easy and self-explanatory, but if you're having issues, I suggest looking up the official Proxmox Wiki and How-To guides.
-   For this guide, you'll need a Windows ISO for your Virtual Machine. Here's a handy guide on how to download an ISO file directly into Proxmox. You'll want to copy ALL your .ISO files to the proper repository folder under Proxmox (including the VirtIO driver ISO file mentioned below).
+   For this guide, you'll need a Windows ISO for your Virtual Machine and the VirtIO Drivers.
+   
+   ![image](https://github.com/user-attachments/assets/4a81f5de-3b0b-4622-8ad9-d604b96c05ea)
 
-   **Example Menu Screens:**
 
-   - General => OS => Hard disk => CPU => Memory => Network => Confirm
 
-   **IMPORTANT**: DO NOT START YOUR VM (yet)
-
-2. (Optional, but RECOMMENDED): Download VirtIO Drivers
-
-   If you follow this guide and are using VirtIO, then you'll need this ISO file of the VirtIO drivers to mount as a CD-ROM in order to install Windows 10 using VirtIO (SCSI).
-   For the CD-ROM, it's fine if you use IDE or SATA. Make sure CD-ROM is selected as the primary boot device under the Options tab when you're done creating the VM. Also, you'll want to make sure you select VirtIO (SCSI, not VirtIO Block) for your Hard disk and Network Adapter.
-
-3. Enable OMVF (UEFI) for the VM
-
-   Under your VM's **Options Tab/Window**, set the following up like so:
-
-   - **Boot Order**: CD-ROM, Disk (scsi0)
+4. Enable OMVF (UEFI) for the VM
+   
+   Under your VM's **OS Tab**, configure the following settings:
+   
+   - **Storage**: local
+   - **ISO Image**: Win11_24H2_German (or your downloaded ISO file)
+   - **Type**: Microsoft Windows
+   
+   #### Add an additional drive for VirtIO drivers:
+   - **Storage**: local
+   - **ISO Image**: virtio-win.iso
+   
+   ![OS Tab Configuration](https://github.com/user-attachments/assets/dcd6d37d-bf50-4635-b3d5-a3eb0850c7e2)
+   
+   Next, go to the **System Tab** and configure the following:
+   
+   - **Graphic Card**: Default (After the last GPU configuration, this can be set to `none`)
+   - **Machine**: q35
    - **SCSI Controller**: VirtIO SCSI Single
-   - **BIOS**: OMVF (UEFI)
+   - **BIOS**: OVMF (UEFI)
+   
+   ![System Tab Configuration](https://github.com/user-attachments/assets/848ed7a8-3bb0-4f3a-8bb1-d5a705f2d777)
+   
+   Everything else can be set as per your preference.
 
-   **Don't Forget**: When you change the BIOS from SeaBIOS (Default) to OMVF (UEFI), Proxmox will say something about adding an EFI disk. So you'll go to your **Hardware Tab/Window** and do that. Add > EFI Disk.
-
-4. Edit the VM Config File
+6. Edit the VM Config File
 
    Going back to the Shell window, we need to edit `/etc/pve/qemu-server/<vmid>.conf`, where `<vmid>` is the VM ID Number you used during the VM creation (General Tab).
 
@@ -212,7 +220,7 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
    cpu: host,hidden=1,flags=+pcid
    args: -cpu 'host,+kvm_pv_unhalt,+kvm_pv_eoi,hv_vendor_id=NV43FIX,kvm=off'
    ```
-5. Add PCI Devices (Your GPU) to VM
+7. Add PCI Devices (Your GPU) to VM
 
    ![image](https://github.com/user-attachments/assets/24820e5d-fb42-452a-ae6f-84df7255c5d6)
 
@@ -227,17 +235,15 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
    - **Primary GPU**: NO
    - **PCI-Express**: YES (requires `machine: q35` in the VM config file)
 
-6. Reboot the VM
+8. Reboot the VM
 
    After rebooting the VM, the new configuration must be set. In conclusion, you can download the [AMD Driver Software](https://www.amd.com/en/support/download/drivers.html) and install it. If everything works correctly, the GPU should be recognized by the installer.
 
-   **AMD Driver Software:**
-   ![image](https://github.com/user-attachments/assets/b4dd9931-961e-4996-8829-836f8abbf711)
+   ![AMD Driver Software](https://github.com/user-attachments/assets/b4dd9931-961e-4996-8829-836f8abbf711)
 
    After installing the driver, the GPU should also be correctly shown in the **Task Manager** of the Windows VM.
 
-   **GPU in Task Manager:**
-   ![image](https://github.com/user-attachments/assets/9cb05bfa-d742-41fa-acbd-3d726d0014ca)
+   ![GPU in Task Manager](https://github.com/user-attachments/assets/9cb05bfa-d742-41fa-acbd-3d726d0014ca)
 
    
 
