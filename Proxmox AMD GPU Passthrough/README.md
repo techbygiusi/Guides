@@ -39,21 +39,29 @@ This guide assumes you already have at the very least, installed Proxmox on your
 - [5 Things I Would Do On Fresh Install Of ProxMox](https://www.youtube.com/watch?v=xD9Xyt2mdSI&t=273s)
 - [Proxmox VE Install and Setup Tutorial](https://www.youtube.com/watch?v=7OVaWaqO2aU)
 
-# Step 1: Configuring the GRUB Bootloader
+## Step 1: Configuring the GRUB Bootloader
 
-# Open the GRUB configuration file
-sudo nano /etc/default/grub
+1. Open the GRUB configuration file using a text editor:
+   ```shell
+   sudo nano /etc/default/grub
+   ```
 
-# Locate the following line:
-# GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+2. Locate the following line:
+   ```shell
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+   ```
 
-# Replace it with:
-# GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
+3. Replace it with:
+   ```shell
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
+   ```
 
-# Save the file by pressing CTRL + X, then confirm with Y to write the changes
+4. Save the file by pressing `CTRL + X`, then confirm with `Y` to write the changes.
 
-# Update the GRUB configuration
-sudo update-grub
+5. Update the GRUB configuration:
+   ```shell
+   sudo update-grub
+   ```
 
 ##Step 2: VFIO Modules
 
