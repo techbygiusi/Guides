@@ -70,9 +70,14 @@ This guide assumes you already have at the very least, installed Proxmox on your
    GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
    ```
 
-4. Save the file by pressing `CTRL + X`, then confirm with `Y` to write the changes.
+   In some cases you will also need following additional command:
+   ```shell
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction nofb nomodeset video=vesafb:off,efifb:off"
+   ```
+   
+5. Save the file by pressing `CTRL + X`, then confirm with `Y` to write the changes.
 
-5. Update the GRUB configuration:
+6. Update the GRUB configuration:
    ```shell
    update-grub
    ```
