@@ -175,10 +175,9 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
 
    Creating a Virtual Machine is pretty easy and self-explanatory, but if you're having issues, I suggest looking up the official Proxmox Wiki and How-To guides.
    For this guide, you'll need a Windows ISO for your Virtual Machine and the VirtIO Drivers.
-   
-   ![image](https://github.com/user-attachments/assets/4a81f5de-3b0b-4622-8ad9-d604b96c05ea)
 
-
+   - Windows 11 Image:  [Download Windows 11](https://www.microsoft.com/en-us/software-download/windows11)
+   - VirtIO Drivers: [Download Windows VirtIO Drivers](https://pve.proxmox.com/wiki/Windows_VirtIO_Drivers)
 
 4. Enable OMVF (UEFI) for the VM
    
@@ -192,7 +191,7 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
    - **Storage**: local
    - **ISO Image**: virtio-win.iso
    
-   ![OS Tab Configuration](https://github.com/user-attachments/assets/dcd6d37d-bf50-4635-b3d5-a3eb0850c7e2)
+   ![image](https://github.com/user-attachments/assets/4a81f5de-3b0b-4622-8ad9-d604b96c05ea)
    
    Next, go to the **System Tab** and configure the following:
    
@@ -200,8 +199,8 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
    - **Machine**: q35
    - **SCSI Controller**: VirtIO SCSI Single
    - **BIOS**: OVMF (UEFI)
-   
-   ![System Tab Configuration](https://github.com/user-attachments/assets/848ed7a8-3bb0-4f3a-8bb1-d5a705f2d777)
+   - 
+   ![OS Tab Configuration](https://github.com/user-attachments/assets/dcd6d37d-bf50-4635-b3d5-a3eb0850c7e2)
    
    Everything else can be set as per your preference.
 
