@@ -105,23 +105,16 @@ This guide assumes you already have at the very least, installed Proxmox on your
 1. **Shut Down the Machine**:
    - Power off the machine completely. You can use the following command to shut it down:
      ```shell
-     sudo shutdown now
+     shutdown now
      ```
 
 2. **Open the Machine**:
    - Once the machine is powered off, physically open the case.
-   - Locate the built-in GPU (usually integrated into the motherboard) and make sure it's properly connected or seated.
 
-3. **Install the Built-in GPU**:
-   - If necessary, ensure that the built-in GPU is enabled in the BIOS/UEFI settings of the motherboard.
-   - Depending on your system, you may need to ensure that the GPU is not disabled by default. Consult your motherboard’s manual for details on enabling/disabling the integrated GPU.
+3. **Install the GPU**:
 
 4. **Start the Machine Again**:
    - Once the built-in GPU is installed and connected, power the machine back on.
-   - You can use the following command to reboot the system if needed:
-     ```shell
-     sudo reboot
-     ```
 
 5. **Verify the GPU is Active**:
    - After the system boots back up, check if the built-in GPU is recognized by running:
@@ -130,6 +123,7 @@ This guide assumes you already have at the very least, installed Proxmox on your
      ```
    - This should display the integrated GPU as well as any other attached GPUs.
 
+   ![image](https://github.com/user-attachments/assets/70abf6f6-7678-4bec-bae8-bfe2e5d19c52)
 
 ## Step 5: Adding GPU to VFIO
 
@@ -137,11 +131,15 @@ This guide assumes you already have at the very least, installed Proxmox on your
    ```shell
    lspci -v
    ```
+   ![image](https://github.com/user-attachments/assets/3a3e7ed3-4f63-4180-bc44-c96ddc1fca6e)
+
 
 2. Get detailed information for the specific device (replace `03:00` with the correct PCI address):
    ```shell
    lspci -n -s 03:00
    ```
+   <img width="226" alt="image" src="https://github.com/user-attachments/assets/0e7cbedc-f096-4bc2-8651-784bcd61b241" />
+
 
 3. Add the GPU to VFIO by creating a configuration file:
    ```shell
@@ -150,10 +148,10 @@ This guide assumes you already have at the very least, installed Proxmox on your
 
 4. Update the initial RAM filesystem:
    ```shell
-   sudo update-initramfs -u
+   update-initramfs -u
    ```
 
 5. Reset the system:
    ```shell
-   sudo reboot
+   reboot
    ```
