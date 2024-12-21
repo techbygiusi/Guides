@@ -70,7 +70,7 @@ This guide assumes you already have at the very least, installed Proxmox on your
    GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
    ```
 
-   In some cases you will also need following additional command:
+   In some cases you will also need following additional commands:
    ```shell
    GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction nofb nomodeset video=vesafb:off,efifb:off"
    ```
