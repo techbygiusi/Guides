@@ -1,4 +1,4 @@
-# How to Passtrhough an AMD GPU to a Windows 11 VM
+# How to Passthrough an AMD GPU to a Windows 11 VM
 
 ## Credits
 
