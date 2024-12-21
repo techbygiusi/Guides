@@ -167,7 +167,7 @@ This guide assumes you already have at the very least, installed Proxmox on your
     reset
     ```
 
-## Step 6: Configuring the VM (Windows 10)
+## Step 6: Configuring the VM (Windows 11)
 
 Now comes the 'fun' part. It took me many, many different configuration attempts to get things just right. Hopefully my pain will be your gain, and help you get things done right, the first time around.
 
@@ -212,3 +212,21 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
    cpu: host,hidden=1,flags=+pcid
    args: -cpu 'host,+kvm_pv_unhalt,+kvm_pv_eoi,hv_vendor_id=NV43FIX,kvm=off'
    ```
+5. Add PCI Devices (Your GPU) to VM
+
+   ![image](https://github.com/user-attachments/assets/24820e5d-fb42-452a-ae6f-84df7255c5d6)
+
+   Under the VM's **Hardware Tab/Window**, click on the **Add** button towards the top. Then, in the drop-down menu, click **PCI Device**.
+   
+   Look for your GPU in the list, and select it. On the PCI options screen, you should configure it as follows:
+
+   ![image](https://github.com/user-attachments/assets/0c4b8a7f-be3d-4c73-aaf7-cdf104eb611d)
+   
+   - **All Functions**: YES
+   - **Rom-Bar**: YES
+   - **Primary GPU**: NO
+   - **PCI-Express**: YES (requires `machine: q35` in the VM config file)
+   
+   Here's an example image of what your **Hardware Tab/Window** should look like when you're done creating the VM.
+
+
