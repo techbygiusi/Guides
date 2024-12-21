@@ -43,7 +43,7 @@ This guide assumes you already have at the very least, installed Proxmox on your
 
 1. Open the GRUB configuration file using a text editor:
    ```shell
-   sudo nano /etc/default/grub
+   nano /etc/default/grub
    ```
 
 2. Locate the following line:
@@ -60,37 +60,100 @@ This guide assumes you already have at the very least, installed Proxmox on your
 
 5. Update the GRUB configuration:
    ```shell
-   sudo update-grub
+   update-grub
    ```
 
-##Step 2: VFIO Modules
+## Step 2: VFIO Modules
 
-nano /etc/modules
+1. Open the modules file:
+   ```shell
+   sudo nano /etc/modules
+   ```
+
+2. Add the following lines to the file:
+   ```shell
    vfio
    vfio_iommu_type1
    vfio_pci
    vfio_virqfd
+   ```
 
-##Step 3: IOMMU interrupt remapping
+## Step 3: IOMMU Interrupt Remapping
 
-echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf
-echo "options kvm ignore_msrs=1" > /etc/modprobe.d/kvm.conf
+1. Create the configuration file for unsafe interrupts:
+   ```shell
+   echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" | sudo tee /etc/modprobe.d/iommu_unsafe_interrupts.conf
+   ```
 
-##Step 4: Blacklisting Drivers
+2. Create the configuration file to ignore MSRs:
+   ```shell
+   echo "options kvm ignore_msrs=1" | sudo tee /etc/modprobe.d/kvm.conf
+   ```
 
-echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
+## Step 4: Blacklisting Drivers
 
-Shut Down - Build in GPU - Start
+1. Blacklist the following drivers by appending to the blacklist file:
+   ```shell
+   echo "blacklist radeon" | sudo tee -a /etc/modprobe.d/blacklist.conf
+   echo "blacklist nouveau" | sudo tee -a /etc/modprobe.d/blacklist.conf
+   echo "blacklist nvidia" | sudo tee -a /etc/modprobe.d/blacklist.conf
+   echo "blacklist amdgpu" | sudo tee -a /etc/modprobe.d/blacklist.conf
+   ```
 
-##Step 5: Adding GPU to VFIO
+## Shut Down, Add Built-in GPU, and Start Again
 
-lspci -v
-lspci -n -s 03:00
+1. **Shut Down the Machine**:
+   - Power off the machine completely. You can use the following command to shut it down:
+     ```shell
+     sudo shutdown now
+     ```
 
-echo "options vfio-pci ids=1002:743f, 1002:ab28  disable_vga=1"> /etc/modprobe.d/vfio.conf
+2. **Open the Machine**:
+   - Once the machine is powered off, physically open the case.
+   - Locate the built-in GPU (usually integrated into the motherboard) and make sure it's properly connected or seated.
 
-update-initramfs -u
-reset
+3. **Install the Built-in GPU**:
+   - If necessary, ensure that the built-in GPU is enabled in the BIOS/UEFI settings of the motherboard.
+   - Depending on your system, you may need to ensure that the GPU is not disabled by default. Consult your motherboard’s manual for details on enabling/disabling the integrated GPU.
+
+4. **Start the Machine Again**:
+   - Once the built-in GPU is installed and connected, power the machine back on.
+   - You can use the following command to reboot the system if needed:
+     ```shell
+     sudo reboot
+     ```
+
+5. **Verify the GPU is Active**:
+   - After the system boots back up, check if the built-in GPU is recognized by running:
+     ```shell
+     lspci | grep VGA
+     ```
+   - This should display the integrated GPU as well as any other attached GPUs.
+
+
+## Step 5: Adding GPU to VFIO
+
+1. Check the list of PCI devices:
+   ```shell
+   lspci -v
+   ```
+
+2. Get detailed information for the specific device (replace `03:00` with the correct PCI address):
+   ```shell
+   lspci -n -s 03:00
+   ```
+
+3. Add the GPU to VFIO by creating a configuration file:
+   ```shell
+   echo "options vfio-pci ids=1002:743f,1002:ab28 disable_vga=1" | sudo tee /etc/modprobe.d/vfio.conf
+   ```
+
+4. Update the initial RAM filesystem:
+   ```shell
+   sudo update-initramfs -u
+   ```
+
+5. Reset the system:
+   ```shell
+   sudo reboot
+   ```
