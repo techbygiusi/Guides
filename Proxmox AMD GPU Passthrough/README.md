@@ -122,8 +122,7 @@ This guide assumes you already have at the very least, installed Proxmox on your
      lspci | grep VGA
      ```
    - This should display the integrated GPU as well as any other attached GPUs.
-
-   ![image](https://github.com/user-attachments/assets/70abf6f6-7678-4bec-bae8-bfe2e5d19c52)
+      ![image](https://github.com/user-attachments/assets/70abf6f6-7678-4bec-bae8-bfe2e5d19c52)
 
 ## Step 5: Adding GPU to VFIO
 
