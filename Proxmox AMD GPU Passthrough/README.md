@@ -226,7 +226,19 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
    - **Rom-Bar**: YES
    - **Primary GPU**: NO
    - **PCI-Express**: YES (requires `machine: q35` in the VM config file)
+
+6. Reboot the VM
+
+   After rebooting the VM, the new configuration must be set. In conclusion, you can download the AMD Adrenalin Software and install it. If everything works correctly, the GPU should be recognized by the installer.
+
+   **AMD Adrenalin Software:**
+   ![image](https://github.com/user-attachments/assets/b4dd9931-961e-4996-8829-836f8abbf711)
+
+   After installing the driver, the GPU should also be correctly shown in the **Task Manager** of the Windows VM.
+
+   **GPU in Task Manager:**
+   ![image](https://github.com/user-attachments/assets/9cb05bfa-d742-41fa-acbd-3d726d0014ca)
+
    
-   Here's an example image of what your **Hardware Tab/Window** should look like when you're done creating the VM.
 
 
