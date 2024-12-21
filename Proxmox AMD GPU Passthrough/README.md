@@ -229,9 +229,9 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
 
 6. Reboot the VM
 
-   After rebooting the VM, the new configuration must be set. In conclusion, you can download the AMD Adrenalin Software and install it. If everything works correctly, the GPU should be recognized by the installer.
+   After rebooting the VM, the new configuration must be set. In conclusion, you can download the [AMD Driver Software](https://www.amd.com/en/support/download/drivers.html) and install it. If everything works correctly, the GPU should be recognized by the installer.
 
-   **AMD Adrenalin Software:**
+   **AMD Driver Software:**
    ![image](https://github.com/user-attachments/assets/b4dd9931-961e-4996-8829-836f8abbf711)
 
    After installing the driver, the GPU should also be correctly shown in the **Task Manager** of the Windows VM.
