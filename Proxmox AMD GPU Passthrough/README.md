@@ -34,7 +34,7 @@ Configuration without GPU:
 ![image](https://github.com/user-attachments/assets/19037910-d38a-42aa-bcc2-7bca03062497)
 
 Configuration with GPU:
-<img width="790" alt="image" src="https://github.com/user-attachments/assets/a07a5f08-fbcd-4306-8d1b-f6d874f8d654" />
+![image]("https://github.com/user-attachments/assets/a07a5f08-fbcd-4306-8d1b-f6d874f8d654")
 
 ### My Software Configuration:
 
