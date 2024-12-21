@@ -1,6 +1,4 @@
-# Ultimate Beginner's Guide to Proxmox GPU Passthrough
-
-Welcome all, to the first installment of my Idiot Friendly tutorial series! I'll be guiding you through the process of configuring GPU Passthrough for your Proxmox Virtual Machine Guests. This guide is aimed at beginners to virtualization, particularly for Proxmox users. It is intended as an overall guide for passing through a GPU (or multiple GPUs) to your Virtual Machine(s). It is not intended as an all-exhaustive how-to guide; however, I will do my best to provide you with all the necessary resources and sources for the passthrough process, from start to finish. If something doesn't work properly, please check /r/Proxmox, /r/Homelab, r/VFIO, or /r/linux4noobs for further assistance from the community.
+# How to Passtrhough an AMD GPU to a Windows 11 VM
 
 ## Credits
 
@@ -40,3 +38,49 @@ This guide assumes you already have at the very least, installed Proxmox on your
 
 - [5 Things I Would Do On Fresh Install Of ProxMox](https://www.youtube.com/watch?v=xD9Xyt2mdSI&t=273s)
 - [Proxmox VE Install and Setup Tutorial](https://www.youtube.com/watch?v=7OVaWaqO2aU)
+
+##Step 1: Configuring the Grub
+
+1. ```shell
+   nano /etc/default/grub
+   ```
+
+   ```shell
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
+   ```
+   
+   ```shell
+   update-grub
+   ```
+
+##Step 2: VFIO Modules
+
+nano /etc/modules
+   vfio
+   vfio_iommu_type1
+   vfio_pci
+   vfio_virqfd
+
+##Step 3: IOMMU interrupt remapping
+
+echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf
+echo "options kvm ignore_msrs=1" > /etc/modprobe.d/kvm.conf
+
+##Step 4: Blacklisting Drivers
+
+echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
+
+Shut Down - Build in GPU - Start
+
+##Step 5: Adding GPU to VFIO
+
+lspci -v
+lspci -n -s 03:00
+
+echo "options vfio-pci ids=1002:743f, 1002:ab28  disable_vga=1"> /etc/modprobe.d/vfio.conf
+
+update-initramfs -u
+reset
