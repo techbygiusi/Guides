@@ -43,7 +43,7 @@ Configuration with GPU:
 
 ### Notes:
 
-1. It is not recommended build in the GPU before beeing on Step 5.
+1. It is not recommended build in the GPU before beeing on [Step 5](https://github.com/techbygiusi/Guides/blob/main/Proxmox%20AMD%20GPU%20Passthrough/README.md#step-5-adding-gpu-to-vfio).
 2. Any Windows 11 installation ISO should work, however, try to stick to the latest available ISO from Microsoft.
 
 ## Configuring Proxmox
