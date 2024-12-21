@@ -163,6 +163,6 @@ This guide assumes you already have at the very least, installed Proxmox on your
    ```
 
 10. Reset the system:
-   ```shell
-   reset
-   ```
+    ```shell
+    reset
+    ```
