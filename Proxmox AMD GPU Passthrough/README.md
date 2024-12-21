@@ -82,22 +82,22 @@ This guide assumes you already have at the very least, installed Proxmox on your
 
 1. Create the configuration file for unsafe interrupts:
    ```shell
-   echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" | sudo tee /etc/modprobe.d/iommu_unsafe_interrupts.conf
+   echo "options vfio_iommu_type1 allow_unsafe_interrupts=1" > /etc/modprobe.d/iommu_unsafe_interrupts.conf
    ```
 
 2. Create the configuration file to ignore MSRs:
    ```shell
-   echo "options kvm ignore_msrs=1" | sudo tee /etc/modprobe.d/kvm.conf
+   echo "options kvm ignore_msrs=1" > /etc/modprobe.d/kvm.conf
    ```
 
 ## Step 4: Blacklisting Drivers
 
 1. Blacklist the following drivers by appending to the blacklist file:
    ```shell
-   echo "blacklist radeon" | sudo tee -a /etc/modprobe.d/blacklist.conf
-   echo "blacklist nouveau" | sudo tee -a /etc/modprobe.d/blacklist.conf
-   echo "blacklist nvidia" | sudo tee -a /etc/modprobe.d/blacklist.conf
-   echo "blacklist amdgpu" | sudo tee -a /etc/modprobe.d/blacklist.conf
+   echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
+   echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+   echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
+   echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
    ```
 
 ## Shut Down, Add Built-in GPU, and Start Again
@@ -153,5 +153,5 @@ This guide assumes you already have at the very least, installed Proxmox on your
 
 5. Reset the system:
    ```shell
-   reboot
+   reset
    ```
