@@ -8,7 +8,8 @@ Self-hosting can be a rewarding experience, giving you full control over your ap
 
 ## 🛠️ Featured Guides
 
-- **Host a Webbrowser with Filebrowser integration**: Create and launch your own website with a simple file uplaod.
+- **Host a Webbrowser with Filebrowser integration**: Create and launch your own website with a simple file upload.
+- **Proxmox AMD GPU Passthrough**: Learn how to passthrough an AMD GPU to a Windows 11 VM.
 
 ## 📝 Contribution Guidelines
 
