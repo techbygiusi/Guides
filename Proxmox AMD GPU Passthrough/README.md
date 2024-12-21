@@ -114,7 +114,7 @@ This guide assumes you already have at the very least, installed Proxmox on your
    echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
    ```
 
-## Shut Down, Add Built-in GPU, and Start Again
+## Step 5: Adding GPU to VFIO
 
 1. **Shut Down the Machine**:
    - Power off the machine completely. You can use the following command to shut it down:
@@ -138,33 +138,31 @@ This guide assumes you already have at the very least, installed Proxmox on your
    - This should display the integrated GPU as well as any other attached GPUs.
       ![image](https://github.com/user-attachments/assets/70abf6f6-7678-4bec-bae8-bfe2e5d19c52)
 
-## Step 5: Adding GPU to VFIO
-
-1. Check the list of PCI devices:
+6. Check the list of PCI devices:
    ```shell
    lspci -v
    ```
    ![image](https://github.com/user-attachments/assets/3a3e7ed3-4f63-4180-bc44-c96ddc1fca6e)
 
 
-2. Get detailed information for the specific device (replace `03:00` with the correct PCI address):
+7. Get detailed information for the specific device (replace `03:00` with the correct PCI address):
    ```shell
    lspci -n -s 03:00
    ```
    <img width="226" alt="image" src="https://github.com/user-attachments/assets/0e7cbedc-f096-4bc2-8651-784bcd61b241" />
 
 
-3. Add the GPU to VFIO by creating a configuration file:
+8. Add the GPU to VFIO by creating a configuration file:
    ```shell
    echo "options vfio-pci ids=1002:743f,1002:ab28 disable_vga=1" | sudo tee /etc/modprobe.d/vfio.conf
    ```
 
-4. Update the initial RAM filesystem:
+9. Update the initial RAM filesystem:
    ```shell
    update-initramfs -u
    ```
 
-5. Reset the system:
+10. Reset the system:
    ```shell
    reset
    ```
