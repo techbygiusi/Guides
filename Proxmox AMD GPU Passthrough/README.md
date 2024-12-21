@@ -202,7 +202,16 @@ Now comes the 'fun' part. It took me many, many different configuration attempts
 
    ![OS Tab Configuration](https://github.com/user-attachments/assets/dcd6d37d-bf50-4635-b3d5-a3eb0850c7e2)
    
-   Everything else can be set as per your preference.
+   Everything else can be set according to your preference. After that, you can start the VM and proceed with the Windows 11 installation.
+   If you want to bypass the Microsoft login, use the **SHIFT + F10** combo to open the command prompt and enter the following command:
+
+   ```shell
+   OOBE\BYPASSNRO
+   ```
+
+   But pssst, don't tell Microsoft. 😏
+   **Important**: Ensure that the network card of the VM is deactivated before performing this step.
+   After completing this, you can continue with the rest of the guide.
 
 6. Edit the VM Config File
 
