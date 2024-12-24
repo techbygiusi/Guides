@@ -22,6 +22,10 @@ The main system is a [Minisforum MS-01](https://store.minisforum.de/products/ms-
 - **Memory**: [32GB DDR5](https://www.amazon.de/dp/B09RVNMGFH?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
 - **GPU**: 1x AMD Radeon [RX 6400](https://www.amazon.de/XFX-Speedster-SWFT105-Grafikkarte-RX-64XL4SFG2/dp/B09Y7358KJ/?_encoding=UTF8&pd_rd_w=8N6Zj&content-id=amzn1.sym.16038c01-cfea-4f09-a119-c9f8c051c46c%3Aamzn1.symc.fc11ad14-99c1-406b-aa77-051d0ba1aade&pf_rd_p=16038c01-cfea-4f09-a119-c9f8c051c46c&pf_rd_r=BNCCBXX7QJFESM0CX5VY&pd_rd_wg=VM7m9&pd_rd_r=82033626-c11e-4552-8955-92dd5c3dd5e5&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d&th=1)
 
+**Optional**For a headless system like a VM, I recommend purchasing an HDMI dummy plug to emulate a connected display for the GPU. Many remote access software solutions, such as Parsec and Steam Link, work better or only function when a monitor is detected for screen capture.  
+
+- **HDMI Dummy Plug**: [FUERAN Headless Ghost Display](https://www.amazon.de/dp/B06XT1Z9TF?_encoding=UTF8&psc=1)
+
 ## Strange Behavior with the MS-01
 
 I've noticed some strange behavior with my MS-01 when inserting GPUs. If you're working with the same model, make sure to enable both 1Gb ports before inserting the GPU. On my machine, this causes one of the adapters to change its name, and a new one is created. 
