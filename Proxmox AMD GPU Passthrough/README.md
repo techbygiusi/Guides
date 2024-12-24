@@ -24,7 +24,7 @@ The main system is a [Minisforum MS-01](https://store.minisforum.de/products/ms-
 
 ### Optional HDMI Dummy Plug  
 
-For a headless system like a VM, I recommend purchasing an HDMI dummy plug to emulate a connected display for the GPU. Many remote access software solutions, such as Parsec and Steam Link, work better—or only function—when a monitor is detected for screen capture.  
+For a headless system like a VM, I recommend purchasing an HDMI dummy plug to emulate a connected display for the GPU. Many remote access software solutions, such as Parsec and Steam Link, work better or only function when a monitor is detected for screen capture.  
 
 - **1080p HDMI Dummy Plug**: [FUERAN Headless Ghost Display](https://www.amazon.de/dp/B06XT1Z9TF?_encoding=UTF8&psc=1)  
 - **4K HDMI Dummy Plug**: [FUERAN Headless Ghost Display 4K](https://www.amazon.de/dp/B0C174243H?_encoding=UTF8&th=1)  
