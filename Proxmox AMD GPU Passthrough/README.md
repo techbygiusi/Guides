@@ -14,17 +14,24 @@ It's important to make note of all your hardware/software setup before we begin 
 
 Your hardware should, at the very least, support: VT-d, interrupt mapping, and UEFI BIOS.
 
-### My Hardware Configuration:
+### My Hardware Configuration  
 
-The main system is a [Minisforum MS-01](https://store.minisforum.de/products/ms-01) with the following configuration:
+The main system is a [Minisforum MS-01](https://store.minisforum.de/products/ms-01) with the following configuration:  
 
-- **CPU**: Intel Core [i5 12600H](https://www.intel.de/content/www/de/de/products/sku/96156/intel-core-i512600h-processor-18m-cache-up-to-4-50-ghz/specifications.html)
-- **Memory**: [32GB DDR5](https://www.amazon.de/dp/B09RVNMGFH?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
-- **GPU**: 1x AMD Radeon [RX 6400](https://www.amazon.de/XFX-Speedster-SWFT105-Grafikkarte-RX-64XL4SFG2/dp/B09Y7358KJ/?_encoding=UTF8&pd_rd_w=8N6Zj&content-id=amzn1.sym.16038c01-cfea-4f09-a119-c9f8c051c46c%3Aamzn1.symc.fc11ad14-99c1-406b-aa77-051d0ba1aade&pf_rd_p=16038c01-cfea-4f09-a119-c9f8c051c46c&pf_rd_r=BNCCBXX7QJFESM0CX5VY&pd_rd_wg=VM7m9&pd_rd_r=82033626-c11e-4552-8955-92dd5c3dd5e5&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d&th=1)
+- **CPU**: Intel Core [i5 12600H](https://www.intel.de/content/www/de/de/products/sku/96156/intel-core-i512600h-processor-18m-cache-up-to-4-50-ghz/specifications.html)  
+- **Memory**: [32GB DDR5](https://www.amazon.de/dp/B09RVNMGFH?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)  
+- **GPU**: 1x AMD Radeon [RX 6400](https://www.amazon.de/XFX-Speedster-SWFT105-Grafikkarte-RX-64XL4SFG2/dp/B09Y7358KJ/?_encoding=UTF8&pd_rd_w=8N6Zj&content-id=amzn1.sym.16038c01-cfea-4f09-a119-c9f8c051c46c%3Aamzn1.symc.fc11ad14-99c1-406b-aa77-051d0ba1aade&pf_rd_p=16038c01-cfea-4f09-a119-c9f8c051c46c&pf_rd_r=BNCCBXX7QJFESM0CX5VY&pd_rd_wg=VM7m9&pd_rd_r=82033626-c11e-4552-8955-92dd5c3dd5e5&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d&th=1)  
 
-**Optional** For a headless system like a VM, I recommend purchasing an HDMI dummy plug to emulate a connected display for the GPU. Many remote access software solutions, such as Parsec and Steam Link, work better or only function when a monitor is detected for screen capture.  
+### Optional HDMI Dummy Plug  
 
-- **HDMI Dummy Plug**: [FUERAN Headless Ghost Display](https://www.amazon.de/dp/B06XT1Z9TF?_encoding=UTF8&psc=1)
+For a headless system like a VM, I recommend purchasing an HDMI dummy plug to emulate a connected display for the GPU. Many remote access software solutions, such as Parsec and Steam Link, work better—or only function—when a monitor is detected for screen capture.  
+
+- **1080p HDMI Dummy Plug**: [FUERAN Headless Ghost Display](https://www.amazon.de/dp/B06XT1Z9TF?_encoding=UTF8&psc=1)  
+- **4K HDMI Dummy Plug**: [FUERAN Headless Ghost Display 4K](https://www.amazon.de/dp/B0C174243H?_encoding=UTF8&th=1)  
+
+Both listed plugs work seamlessly without requiring additional drivers.  
+
+> **Note:** None of the above links are affiliate links.  
 
 ## Strange Behavior with the MS-01
 
