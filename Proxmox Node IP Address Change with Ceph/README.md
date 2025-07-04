@@ -2,8 +2,6 @@
 
 This guide explains how to change a Proxmox node's IP address, including updates to networking, Corosync, and Ceph configuration, all in one process.
 
----
-
 ## 🔧 Step-by-Step Instructions
 
 ### 1. Update Network Configuration
@@ -26,8 +24,6 @@ Change the DNS server if needed:
 nano /etc/resolv.conf
 ```
 
----
-
 ### 2. Update Corosync Configuration
 
 Update the Corosync config file and **replace only the IP address of the current node**:
@@ -35,8 +31,6 @@ Update the Corosync config file and **replace only the IP address of the current
 ```bash
 nano /etc/pve/corosync.conf
 ```
-
----
 
 ### 3. Update Known Hosts (if Master Node IP is Changing)
 
@@ -47,8 +41,6 @@ nano /etc/pve/priv/known_hosts
 ```
 
 Insert the **new IP** of the master node.
-
----
 
 ### 4. Update Ceph Configuration (If Using Ceph)
 
@@ -65,8 +57,6 @@ cluster_network = 10.10.20.0/24,10.10.0.0/24
 public_network  = 10.10.20.0/24,10.10.0.0/24
 ```
 
----
-
 ### 5. Reboot the Node
 
 Reboot to apply network and service changes:
@@ -75,13 +65,9 @@ Reboot to apply network and service changes:
 reboot
 ```
 
----
-
 ### 6. Remove Old Monitor (MON) via GUI
 
 In the Proxmox web interface, delete the MON of the node you changed.
-
----
 
 ### 7. Temporarily Edit `ceph.conf` Again
 
@@ -97,8 +83,6 @@ Modify:
 public_network = 10.10.0.0/24
 ```
 
----
-
 ### 8. Create the New Monitor (MON)
 
 Use the following command:
@@ -106,8 +90,6 @@ Use the following command:
 ```bash
 pveceph mon create
 ```
-
----
 
 ### 9. Restore Original `ceph.conf`
 
@@ -132,8 +114,6 @@ public_addr = 10.10.0.12
 
 > Replace `work` and `10.10.0.12` with your actual hostname and new IP.
 
----
-
 ### 🔁 Repeat for Other Nodes
 
 Repeat the whole process on any additional nodes (e.g. 3 total).
@@ -145,8 +125,6 @@ public_network  = 10.10.0.0/24
 cluster_network = 10.10.0.0/24
 ```
 
----
-
 ### 🔄 Final Reboot
 
 Reboot the final node:
@@ -154,8 +132,6 @@ Reboot the final node:
 ```bash
 reboot
 ```
-
----
 
 ## ✅ Done!
 
