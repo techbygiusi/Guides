@@ -168,7 +168,7 @@ sudo reboot
 
 ---
 
-## 10) Neustartservice (Einhängen des externen Mounts im Conatainer)
+## 10) Neustartservice (Einhängen des externen Mounts im Container)
 
 ```
 sudo nano /etc/systemd/system/restart_docker_container.service
