@@ -2,7 +2,7 @@
 
 This document describes step by step how we built a **Proxmox dashboard** on a fresh **Debian LXC** — including **Proxmox user & API token, Nginx, Filebrowser, Node.js proxy, and HTML frontend**.
 
-<img width="593" height="358" alt="image" src="https://github.com/user-attachments/assets/f2ae39e9-7d83-4774-9c63-1d1188fa2d21" />
+<img width="1496" height="890" alt="image" src="https://github.com/user-attachments/assets/616d5c81-de15-473f-a6e1-9f135c54c660" />
 
 ---
 
