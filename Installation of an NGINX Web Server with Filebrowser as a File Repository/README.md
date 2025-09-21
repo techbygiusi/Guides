@@ -113,6 +113,16 @@ systemctl start filebrowser.service
 Filebrowser will now be accessible at `http://[your-ip-address]:8080`.
 
 The default username and password are `admin` / `admin`. These credentials can be changed through the Filebrowser web interface.
+Reset password if needed:
+```
+systemctl stop filebrowser.service
+```
+```
+filebrowser -d /etc/filebrowser.db users update admin --password NEWPASS
+```
+```
+systemctl start filebrowser.service
+```
 
 ---
 
