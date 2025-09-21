@@ -419,6 +419,7 @@ async function loadCluster() {
         let cpuPerc = 0, cpuTotal = n.maxcpu || 0;
         let memText = "-", diskText = "-", netText = "↓ 0 B/s ↑ 0 B/s";
         let memPerc = 0, diskPerc = 0;
+        let vms = 0, lxc = 0;
         let ip = "-";
 
         if (reachable) {
@@ -439,6 +440,15 @@ async function loadCluster() {
           let diskTotal = n.maxdisk || 1;
           diskPerc = ((diskUsed / diskTotal) * 100).toFixed(1);
           diskText = `${diskPerc}% (${(diskUsed/1073741824).toFixed(1)} GB / ${(diskTotal/1073741824).toFixed(1)} GB)`;
+
+          // VMs and CTs
+          let vmRes = await fetch(apiURL + `/nodes/${n.node}/qemu`);
+          let vmData = await vmRes.json();
+          let lxcRes = await fetch(apiURL + `/nodes/${n.node}/lxc`);
+          let lxcData = await lxcRes.json();
+        
+          vms = vmData?.data?.length || 0;
+          lxc = lxcData?.data?.length || 0;
 
           // IP
           let netData = await safeFetch(apiURL + `/nodes/${n.node}/network`);
@@ -463,6 +473,7 @@ async function loadCluster() {
             <div class="progress"><div class="progress-bar" style="width:${memPerc}%; background:${getBarColor(memPerc)}"></div></div>
             <div class="metric">Disk: ${diskText}</div>
             <div class="progress"><div class="progress-bar" style="width:${diskPerc}%; background:${getBarColor(diskPerc)}"></div></div>
+            <div class="metric">VMs: ${vms} | LXCs: ${lxc}</div>
             <div class="metric">IP: ${ip}</div>
             <div class="metric">Status: <span class="status-${status}">${status}</span></div>
             <div class="metric">Uptime: ${uptime}</div>
