@@ -1,4 +1,4 @@
-# ARM Ripper – Docker Cheatsheet
+# ARM Ripper update Cycle
 ---
 
 ## 📁 Verzeichnisstruktur
