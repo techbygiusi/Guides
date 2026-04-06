@@ -1,5 +1,4 @@
 # ARM Ripper update Cycle
----
 
 ## 📁 Verzeichnisstruktur
 
@@ -24,8 +23,6 @@
 /mnt/jellyfin-freigabe/        # Jellyfin-Freigabe (Volume)
 ```
 
----
-
 ## 🔍 Status & Logs
 
 ```bash
@@ -42,8 +39,6 @@ sudo docker logs arm-rippers -f
 sudo docker inspect arm-rippers
 ```
 
----
-
 ## ▶️ Container starten / stoppen
 
 ```bash
@@ -59,8 +54,6 @@ sudo docker stop arm-rippers && sudo docker rm arm-rippers
 # Neu starten (restart)
 sudo docker restart arm-rippers
 ```
-
----
 
 ## 🔄 Update-Prozedur
 
@@ -104,8 +97,6 @@ sudo docker ps
 sudo docker logs arm-rippers --tail 50
 ```
 
----
-
 ## ⏪ Rollback
 
 ```bash
@@ -115,8 +106,6 @@ sudo bash run-arm-rippers.sh
 ```
 
 > **Datum anpassen:** `YYYYMMDD` → z.B. `20260406`
-
----
 
 ## 🗂️ Backup-Archiv aufräumen
 
@@ -133,8 +122,6 @@ sudo mv ~/run-arm-rippers.sh.bak ~/backups/$(date +%Y%m%d)/
 # Prüfen
 ls ~/backups/$(date +%Y%m%d)/
 ```
-
----
 
 ## 🐳 Docker Image Verwaltung
 
@@ -154,8 +141,6 @@ sudo docker system df
 # Spezifisches Image löschen
 sudo docker rmi arm-rippers:pre-update-YYYYMMDD
 ```
-
----
 
 ## ⚙️ Container-Konfiguration (Referenz)
 
@@ -185,15 +170,11 @@ docker run \
   -d arm-rippers:backup-2025-08-30 /sbin/my_init
 ```
 
----
-
 ## 🌐 Web UI
 
 ```
 http://<server-ip>:8080
 ```
-
----
 
 ## ⚠️ Bekannte Hinweise
 
