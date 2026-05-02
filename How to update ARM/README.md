@@ -145,29 +145,27 @@ sudo docker rmi arm-rippers:pre-update-YYYYMMDD
 ## ⚙️ Container Configuration (Reference)
 
 ```bash
-docker run \
-  --name=arm-rippers \
-  --hostname=f945c8a15cb5 \
-  --mac-address=2e:57:52:d9:78:14 \
-  --cpuset-cpus=2-7 \
-  --volume /home/arm/logs:/home/arm/logs \
-  --volume /home/arm/media:/home/arm/media \
-  --volume /home/arm/music:/home/arm/music \
-  --volume /mnt/jellyfin-freigabe:/mnt/jellyfin-freigabe \
-  --volume /home/arm/config:/etc/arm/config \
-  --volume /home/arm:/home/arm \
-  --env=ARM_UID=1001 \
-  --env=ARM_GID=1001 \
-  --network=bridge \
-  --privileged \
-  --workdir=/home/arm \
-  -p 8080:8080 \
-  --restart=always \
-  --device /dev/sr0:/dev/sr0 \
-  --device /dev/dri/renderD128:/dev/dri/renderD128 \
-  --device /dev/dri:/dev/dri \
-  --runtime=runc \
-  -d arm-rippers:backup-2025-08-30 /sbin/my_init
+#!/bin/bash
+docker run --name=arm-rippers \
+    --hostname=fe5126f4889a \
+    --mac-address=2e:57:52:d9:78:14 \
+    --cpuset-cpus=2-7 \
+    -v "/home/arm/logs:/home/arm/logs" \
+    -v "/home/arm/media:/home/arm/media" \
+    -v "/home/arm/music:/home/arm/music" \
+    -v "/mnt/jellyfin-freigabe:/mnt/jellyfin-freigabe" \
+    -v "/home/arm/config:/etc/arm/config" \
+    -v "/home/arm:/home/arm" \
+    -e ARM_UID=1001 \
+    -e ARM_GID=1001 \
+    --device="/dev/sr0:/dev/sr0" \
+    --privileged \
+    --network=bridge \
+    --workdir=/home/arm \
+    -p 8080:8080 \
+    --restart=always \
+    --runtime=runc \
+    -d arm-rippers:qsv-fixed /sbin/my_init
 ```
 
 ## 🌐 Web UI
