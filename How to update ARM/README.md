@@ -1,88 +1,88 @@
-# ARM Ripper update Cycle
+# ARM Ripper Update Cycle
 
-## 📁 Verzeichnisstruktur
+## 📁 Directory Structure
 
 ```
 /home/giuseppe/
-├── run-arm-rippers.sh         # Start-Script (aktiv)
-├── arm-rippers-config.json    # Konfiguration (aktiv)
-├── docker-setup.sh            # Original Setup-Script (ARM-Projekt)
+├── run-arm-rippers.sh         # Start script (active)
+├── arm-rippers-config.json    # Configuration (active)
+├── docker-setup.sh            # Original setup script (ARM project)
 └── backups/
-    └── YYYYMMDD/              # Archiv pro Update-Datum
+    └── YYYYMMDD/              # Archive per update date
         ├── run-arm-rippers.sh.bak
         ├── arm-rippers-config.json.bak-YYYYMMDD
         ├── arm-rippers-inspect-YYYYMMDD.json
         └── docker-setup.sh.bak
 
 /home/arm/
-├── config/                    # ARM-Konfiguration (Volume)
-├── logs/                      # Logs (Volume)
-├── media/                     # Medien (Volume)
-└── music/                     # Musik (Volume)
+├── config/                    # ARM configuration (volume)
+├── logs/                      # Logs (volume)
+├── media/                     # Media (volume)
+└── music/                     # Music (volume)
 
-/mnt/jellyfin-freigabe/        # Jellyfin-Freigabe (Volume)
+/mnt/jellyfin-freigabe/        # Jellyfin share (volume)
 ```
 
 ## 🔍 Status & Logs
 
 ```bash
-# Container-Status prüfen
+# Check container status
 sudo docker ps
 
-# Letzte 50 Log-Zeilen
+# Last 50 log lines
 sudo docker logs arm-rippers --tail 50
 
-# Logs live verfolgen
+# Follow logs live
 sudo docker logs arm-rippers -f
 
-# Container Details
+# Container details
 sudo docker inspect arm-rippers
 ```
 
-## ▶️ Container starten / stoppen
+## ▶️ Start / Stop Container
 
 ```bash
-# Starten (via Script)
+# Start (via script)
 sudo bash run-arm-rippers.sh
 
-# Stoppen
+# Stop
 sudo docker stop arm-rippers
 
-# Stoppen + entfernen
+# Stop + remove
 sudo docker stop arm-rippers && sudo docker rm arm-rippers
 
-# Neu starten (restart)
+# Restart
 sudo docker restart arm-rippers
 ```
 
-## 🔄 Update-Prozedur
+## 🔄 Update Procedure
 
-### 1. Backup anlegen
+### 1. Create Backup
 
 ```bash
-# Altes Image sichern (vor dem Überschreiben!)
+# Save old image (before overwriting!)
 sudo docker tag arm-rippers:backup-2025-08-30 arm-rippers:pre-update-$(date +%Y%m%d)
 
-# Scripts & Config sichern
+# Back up scripts & config
 sudo cp run-arm-rippers.sh run-arm-rippers.sh.bak
 sudo cp arm-rippers-config.json arm-rippers-config.json.bak-$(date +%Y%m%d)
 sudo docker inspect arm-rippers > arm-rippers-inspect-$(date +%Y%m%d).json
 sudo cp -r /home/arm/config /home/arm/config.bak-$(date +%Y%m%d)
 ```
 
-### 2. Neues Image pullen
+### 2. Pull New Image
 
 ```bash
 sudo docker pull automaticrippingmachine/automatic-ripping-machine:latest
 ```
 
-### 3. Neu taggen (Run-Script bleibt unverändert)
+### 3. Re-tag (run script stays unchanged)
 
 ```bash
 sudo docker tag automaticrippingmachine/automatic-ripping-machine:latest arm-rippers:backup-2025-08-30
 ```
 
-### 4. Container neu starten
+### 4. Restart Container
 
 ```bash
 sudo docker stop arm-rippers
@@ -90,7 +90,7 @@ sudo docker rm arm-rippers
 sudo bash run-arm-rippers.sh
 ```
 
-### 5. Prüfen
+### 5. Verify
 
 ```bash
 sudo docker ps
@@ -105,44 +105,44 @@ sudo docker tag arm-rippers:pre-update-YYYYMMDD arm-rippers:backup-2025-08-30
 sudo bash run-arm-rippers.sh
 ```
 
-> **Datum anpassen:** `YYYYMMDD` → z.B. `20260406`
+> **Adjust date:** `YYYYMMDD` → e.g. `20260406`
 
-## 🗂️ Backup-Archiv aufräumen
+## 🗂️ Clean Up Backup Archive
 
 ```bash
-# Backup-Ordner mit heutigem Datum erstellen
+# Create backup folder with today's date
 sudo mkdir -p ~/backups/$(date +%Y%m%d)
 
-# Alle .bak und Inspect-Dateien verschieben
+# Move all .bak and inspect files
 sudo mv ~/arm-rippers-config.json.bak-* ~/backups/$(date +%Y%m%d)/
 sudo mv ~/arm-rippers-inspect-*.json ~/backups/$(date +%Y%m%d)/
 sudo mv ~/docker-setup.sh.bak ~/backups/$(date +%Y%m%d)/
 sudo mv ~/run-arm-rippers.sh.bak ~/backups/$(date +%Y%m%d)/
 
-# Prüfen
+# Verify
 ls ~/backups/$(date +%Y%m%d)/
 ```
 
-## 🐳 Docker Image Verwaltung
+## 🐳 Docker Image Management
 
 ```bash
-# Alle lokalen Images anzeigen
+# List all local images
 sudo docker images
 
-# Ungenutzte Images aufräumen
+# Remove unused images
 sudo docker image prune
 
-# Alle ungenutzten Ressourcen aufräumen (Images, Container, Volumes, Netzwerke)
+# Remove all unused resources (images, containers, volumes, networks)
 sudo docker system prune
 
-# Speicherverbrauch anzeigen
+# Show disk usage
 sudo docker system df
 
-# Spezifisches Image löschen
+# Delete a specific image
 sudo docker rmi arm-rippers:pre-update-YYYYMMDD
 ```
 
-## ⚙️ Container-Konfiguration (Referenz)
+## ⚙️ Container Configuration (Reference)
 
 ```bash
 docker run \
@@ -176,11 +176,10 @@ docker run \
 http://<server-ip>:8080
 ```
 
-## ⚠️ Bekannte Hinweise
+## ⚠️ Known Notes
 
-| Meldung | Bedeutung | Aktion |
+| Message | Meaning | Action |
 |---|---|---|
-| `Database is not current, update required` | DB-Schema veraltet nach Update | Automatisch beim nächsten Job, oder manuell triggern |
-| `Intel QuickSync supported!` | Hardware-Encoding aktiv | ✅ OK |
-| `Handbrake call successful` | Handbrake funktioniert | ✅ OK |
-
+| `Database is not current, update required` | DB schema outdated after update | Triggered automatically on next job, or trigger manually |
+| `Intel QuickSync supported!` | Hardware encoding active | ✅ OK |
+| `Handbrake call successful` | HandBrake working | ✅ OK |
